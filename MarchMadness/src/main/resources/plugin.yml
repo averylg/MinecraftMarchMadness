@@ -1,0 +1,7 @@
+name: MarchMadness
+version: '${project.version}'
+main: com.averylg.marchmadness.MarchMadness
+api-version: '1.20'
+author: averylg
+commands:
+  mm:
