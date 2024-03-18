@@ -5,3 +5,7 @@ api-version: '1.20'
 author: averylg
 commands:
   mm:
+permissions:
+  marchmadness.allow-http:
+    description: Allow plugin to create HTTP server
+    default: true
