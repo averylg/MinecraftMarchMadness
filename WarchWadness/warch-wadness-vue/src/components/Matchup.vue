@@ -51,14 +51,19 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: auto;
+        justify-content: center;
     }
     input {
         color: black;
+        padding: 5px;
     }
 
     button {
         background-color: aqua;
-
+        margin: 5px;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+        border-radius: 5px;
     }
 </style>
