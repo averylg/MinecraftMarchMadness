@@ -1,6 +1,7 @@
 <script setup>
   import Matchup from "./components/Matchup.vue"
   import MatchMonitor from "./components/MatchMonitor.vue"
+  import Winner from "./components/Winner.vue"
 </script>
 
 <template>
@@ -12,6 +13,7 @@
     <h1>Enter your team names</h1>
     <Matchup />
     <MatchMonitor />
+    <Winner />
   </main>
 </template>
 
@@ -20,13 +22,19 @@ header {
   line-height: 1.5;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+* {
+  color: white;
+  align-items: center;
+  align-self: center;
 }
 
-* {
-  
-  color: white;
+h1 {
+  justify-content: center;
+  display: flex;
+}
+
+.match {
+  display: flex;
+  flex-direction: row;
 }
 </style>

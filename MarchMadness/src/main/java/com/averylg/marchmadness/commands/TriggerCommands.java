@@ -6,13 +6,11 @@ import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class TriggerCommands implements CommandExecutor {
@@ -37,13 +35,13 @@ public class TriggerCommands implements CommandExecutor {
     }
 
     public Villager spawnVillager(String name, int x, int y, int z) {
-        Villager viwwagew = (Villager) Bukkit.getWorld("world").spawnEntity(
+        Villager villager = (Villager) Bukkit.getWorld("world").spawnEntity(
                 new Location(Bukkit.getWorld("world"), x, y, z),
                 EntityType.VILLAGER
         );
-        viwwagew.setCustomNameVisible(true);
-        viwwagew.setCustomName(name);
-        return viwwagew;
+        villager.setCustomNameVisible(true);
+        villager.setCustomName(name);
+        return villager;
     }
 
     public List<Villager> spawnVillagerPair(String v1Name, String v2Name) {

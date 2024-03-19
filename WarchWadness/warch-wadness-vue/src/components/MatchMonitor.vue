@@ -1,18 +1,14 @@
 <template>
   <div class="row">
     <div class="col">
-      <p>Team A</p>
-      <ul>
-        <li>Name: {{ teamA }}</li>
-        <li>Health: {{ teamAHealth }}</li>
-      </ul>
+      <h2>Team A</h2>
+      <p>Name: {{ teamA }}</p>
+      <p>Health: {{ teamAHealth }}</p>
     </div>
     <div class="col">
-      <p>Team B</p>
-      <ul>
-        <li>Name: {{ teamB }}</li>
-        <li>Health: {{ teamBHealth }}</li>
-      </ul>
+      <h2>Team B</h2>
+      <p>Name: {{ teamB }}</p>
+      <p>Health: {{ teamBHealth }}</p>
     </div>
   </div>
 </template>
@@ -31,7 +27,7 @@ export default {
   },
   methods: {
     connectWebSocket() {
-      this.socket = new WebSocket("ws://localhost:8081"); // Replace with your server's WebSocket URL
+      this.socket = new WebSocket("ws://localhost:8081");
 
       this.socket.onopen = () => {
         this.connectionStatus = "Connected";
@@ -43,8 +39,8 @@ export default {
         blobReader.onload = () => {
           // Convert the Blob to a string and update the state
           const jsonData = JSON.parse(blobReader.result);
-          const firstTeam = jsonData["villagers"][0];
-          const secondTeam = jsonData["villagers"][1];
+          const firstTeam = jsonData["villager1"];
+          const secondTeam = jsonData["villager2"];
           this.teamA = firstTeam["name"];
           this.teamAHealth = firstTeam["health"];
           this.teamB = secondTeam["name"];
@@ -71,9 +67,18 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: auto;
 }
 .row {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+li {
+  list-style-type: none;
+}
+* {
+  align-items: center;
 }
 </style>

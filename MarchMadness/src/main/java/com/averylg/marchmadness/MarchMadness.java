@@ -16,16 +16,14 @@ public final class MarchMadness extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        getLogger().info("hehe zambie minceraft");
+        getLogger().info("March Madness Plugin Started");
         String serverURI = "ws://localhost:8081";
 
-
         try {
-            MCWebSocketClient cwient = new MCWebSocketClient(new URI(serverURI), this);
-            cwient.connect();
-            getLogger().info("reeeeeeeeeeeeeeeeeee");
+            MCWebSocketClient client = new MCWebSocketClient(new URI(serverURI), this);
+            client.connect();
             // Set up your HTTP server
-            new HttpHandler(this, 8084, cwient);
+            new HttpHandler(this, 8084, client);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }

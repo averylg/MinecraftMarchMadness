@@ -1,8 +1,14 @@
 <template>
   <div class="wrapper">
-    <input type="text" v-model="teamA" />
-    <input type="text" v-model="teamB" />
-    <button @click="handlePostRequest">Sleep is for the weak</button>
+    <div class="input">
+        <label>Team 1: </label>
+        <input type="text" v-model="teamA" />
+    </div>
+    <div>
+        <label>Team 2: </label>
+        <input type="text" v-model="teamB" />
+    </div>
+    <button @click="handlePostRequest">Spawn Villagers</button>
   </div>
 </template>
 
@@ -17,7 +23,7 @@ export default {
   methods: {
     async handlePostRequest() {
       try {
-        const url = "http://localhost:8084/minecwaft";
+        const url = "http://localhost:8084/minecraft";
         const data = {
           teamA: this.teamA,
           teamB: this.teamB,
@@ -56,14 +62,18 @@ export default {
     input {
         color: black;
         padding: 5px;
+        margin: 5px;
     }
 
     button {
-        background-color: aqua;
-        margin: 5px;
+        background-color: deepskyblue;
+        margin: 10px;
         border: none;
-        padding: 5px;
+        padding: 10px;
         cursor: pointer;
         border-radius: 5px;
+    }
+    * {
+        align-items: center;
     }
 </style>
