@@ -1,4 +1,4 @@
-# March Madness Minecraft Panel
+# Minecraft Villager Zombies Panel
 
 ## JMN-V
 This is essentially a full-stack web app with the stack Java, Minecraft, NodeJS, VueJS (aka JMN-V).
