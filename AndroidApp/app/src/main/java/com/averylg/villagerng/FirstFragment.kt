@@ -12,12 +12,21 @@ import android.widget.EditText
 import androidx.navigation.fragment.findNavController
 import com.averylg.villagerng.databinding.FragmentFirstBinding
 import com.averylg.villagerng.websockets.VillageRNGWebSocketClient
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.FormBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
+import java.io.IOException
 import java.net.URI
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class FirstFragment : Fragment() {
+
+    private val client = OkHttpClient()
 
     private var _binding: FragmentFirstBinding? = null
 
@@ -40,9 +49,6 @@ class FirstFragment : Fragment() {
         return binding.root
 
 
-
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,11 +67,43 @@ class FirstFragment : Fragment() {
             var vTextA = villagerAInput.text.toString()
             var vTextB = villagerBInput.text.toString()
 
-            webSocketClient.send("Villager A: $vTextA")
-            webSocketClient.send("Villager B: $vTextB")
+//            webSocketClient.send("Villager A: $vTextA")
+//            webSocketClient.send("Villager B: $vTextB")
+            performHttpPostRequest(vTextA, vTextB)
 
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+    }
+
+    private fun performHttpPostRequest(villagerA: String, villagerB: String) {
+        val url = "https://10.0.2.2:8084/minecraft"
+
+        val requestBody = FormBody.Builder()
+            .add("teamA", villagerA)
+            .add("teamB", villagerB)
+            .build()
+
+        val request = Request.Builder()
+            .url(url)
+            .post(requestBody)
+            .build()
+
+        client.newCall(request).enqueue(object: Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("HTTP_POST_REQUEST", "Failed to execute POST request: ${e.message}", e)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                response.use {
+                    if (!response.isSuccessful) {
+                        Log.e("HTTP_POST_REQUEST", "HTTP error code: ${response.code}")
+                    } else {
+                        val responseBody = response.body?.string()
+                        Log.d("HTTP_POST_REQUEST", "Response: $responseBody")
+                    }
+                }
+            }
+        })
     }
 
     override fun onDestroyView() {
