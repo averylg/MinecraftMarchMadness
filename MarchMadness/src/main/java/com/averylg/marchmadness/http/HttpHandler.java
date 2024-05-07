@@ -37,6 +37,7 @@ public class HttpHandler {
         enableCORS("*", "*", "*");
         Spark.post("/minecraft", (request, response) -> {
             // Handle the incoming POST request
+            main.getLogger().info("REQUEST BODY: " + request.body());
             JsonElement jsonElement = JsonParser.parseString(request.body());
             JsonObject jsonObject = jsonElement.getAsJsonObject();
             String teamA = jsonObject.get("teamA").getAsString();

@@ -15,9 +15,12 @@ import com.averylg.villagerng.websockets.VillageRNGWebSocketClient
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.FormBody
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
+import org.json.JSONObject
 import java.io.IOException
 import java.net.URI
 
@@ -76,17 +79,28 @@ class FirstFragment : Fragment() {
     }
 
     private fun performHttpPostRequest(villagerA: String, villagerB: String) {
-        val url = "https://10.0.2.2:8084/minecraft"
+        val url = "http://10.0.2.2:8084/minecraft"
 
-        val requestBody = FormBody.Builder()
-            .add("teamA", villagerA)
-            .add("teamB", villagerB)
-            .build()
+//        val requestBody = FormBody.Builder()
+//            .add("teamA", villagerA)
+//            .add("teamB", villagerB)
+//            .build()
+
+        val mediaType = "application/json; charset=utf-8".toMediaType()
+
+        val jsonBody = JSONObject()
+
+        jsonBody.put("teamA", villagerA)
+        jsonBody.put("teamB", villagerB)
+
+        val requestBody = jsonBody.toString().toRequestBody(mediaType)
 
         val request = Request.Builder()
             .url(url)
             .post(requestBody)
             .build()
+
+        Log.d("Logging stuff", request.body.toString())
 
         client.newCall(request).enqueue(object: Callback {
             override fun onFailure(call: Call, e: IOException) {
@@ -95,6 +109,7 @@ class FirstFragment : Fragment() {
 
             override fun onResponse(call: Call, response: Response) {
                 response.use {
+
                     if (!response.isSuccessful) {
                         Log.e("HTTP_POST_REQUEST", "HTTP error code: ${response.code}")
                     } else {
