@@ -45,7 +45,6 @@ class NameVillagersFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-//        activity?.title = "Name Your Villagers"
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
         return binding.root
 
@@ -60,20 +59,14 @@ class NameVillagersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        webSocketClient.connect()
-
         villagerAInput = view.findViewById(R.id.villager_A_Text_input)
         villagerBInput = view.findViewById(R.id.villager_B_Text_input)
 
         binding.buttonAction.setOnClickListener {
 
-//            webSocketClient.send("AYO WE CHILLIN!")
-
             var vTextA = villagerAInput.text.toString()
             var vTextB = villagerBInput.text.toString()
 
-//            webSocketClient.send("Villager A: $vTextA")
-//            webSocketClient.send("Villager B: $vTextB")
             performHttpPostRequest(vTextA, vTextB)
 
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
@@ -120,7 +113,6 @@ class NameVillagersFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-//        webSocketClient.close()
         _binding = null
     }
 }

@@ -44,8 +44,6 @@ class MonitorStatusFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
-
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
         return binding.root
 
@@ -54,10 +52,6 @@ class MonitorStatusFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (activity as MainActivity?)?.supportActionBar?.title = "Monitor Status"
-
-        Log.d("RESUME", "Ayo we zoomin?")
-
-
 
     }
 
@@ -75,13 +69,9 @@ class MonitorStatusFragment : Fragment() {
         villagerHealthA = view.findViewById<TextView>(R.id.villager_A_Health)
         villagerHealthB = view.findViewById<TextView>(R.id.villager_B_health)
 
-        Log.d("Villager A Name:", villagerNameA.text.toString())
-
-
         val webSocketListener = object : WebSocketListener() {
             override fun onOpen(webSocket: WebSocket, response: Response) {
                 Log.d("VillageRNG", "Web Socket Opened")
-                webSocket.send("HALP PLS!!!")
             }
 
 
@@ -121,15 +111,12 @@ class MonitorStatusFragment : Fragment() {
                         villagerNameB.text = nameB
                         villagerHealthB.text = "Health: $healthB"
 
-
-
                     }
 
                     Log.d("TEST", "halp")
 
                 } catch (e: Exception) {
-
-                    Log.e("UH OH...", e.toString())
+                    e.printStackTrace()
                 }
 
             }
@@ -145,7 +132,6 @@ class MonitorStatusFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-//        webSocketClient.close()
         _binding = null
     }
 }
