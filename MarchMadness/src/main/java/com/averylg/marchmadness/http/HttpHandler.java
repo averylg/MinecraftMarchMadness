@@ -58,8 +58,8 @@ public class HttpHandler {
                 }
                 zambiesA.clear();
                 zambiesB.clear();
-                zambiesA = client.spawnZambies(new Location(Bukkit.getWorld("world"), 374, 63, -172));
-                zambiesB = client.spawnZambies(new Location(Bukkit.getWorld("world"), 362, 63, -172));
+                zambiesA = client.spawnZambies(new Location(Bukkit.getWorld("world"), 416, 112, -90));
+                zambiesB = client.spawnZambies(new Location(Bukkit.getWorld("world"), 428, 112, -90));
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     player.sendTitle("Match commences", "" + teamA + " vs. " + teamB);
                 }
@@ -103,8 +103,8 @@ public class HttpHandler {
 
     public List<Villager> spawnVillagerPair(String v1Name, String v2Name) {
         List<Villager> pair = new ArrayList<>();
-        pair.add(spawnVillager(v1Name, 366, 63, -172));
-        pair.add(spawnVillager(v2Name, 370, 63, -172));
+        pair.add(spawnVillager(v1Name, 420, 112, -85));
+        pair.add(spawnVillager(v2Name, 424, 112, -85));
         for (Villager v : pair) {
             this.main.getLogger().info("Villager name: " + v.getCustomName());
         }

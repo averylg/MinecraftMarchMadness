@@ -17,7 +17,7 @@ public final class MarchMadness extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         getLogger().info("March Madness Plugin Started");
-        String serverURI = "ws://localhost:8081";
+        String serverURI = "ws://127.0.0.1:8081";
 
         try {
             MCWebSocketClient client = new MCWebSocketClient(new URI(serverURI), this);

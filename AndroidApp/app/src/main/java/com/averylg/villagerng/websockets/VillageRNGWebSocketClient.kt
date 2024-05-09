@@ -1,5 +1,6 @@
 package com.averylg.villagerng.websockets
 
+import android.util.Log
 import org.java_websocket.client.WebSocketClient
 import org.java_websocket.handshake.ServerHandshake
 import java.net.URI
@@ -18,6 +19,8 @@ class VillageRNGWebSocketClient(serverUri: URI) : WebSocketClient(serverUri) {
     override fun onMessage(message: String?) {
         println("Received message: $message")
         // Process incoming messages from the WebSocket server
+        Log.d("WEBSOCKETS", "Received message: $message")
+
     }
 
     override fun onError(ex: Exception?) {

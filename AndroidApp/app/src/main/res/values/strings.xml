@@ -2,10 +2,10 @@
     <string name="app_name">VillageRNG</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="first_fragment_label">Name Your Villagers</string>
+    <string name="second_fragment_label">Monitor Status</string>
     <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="previous">Restart</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

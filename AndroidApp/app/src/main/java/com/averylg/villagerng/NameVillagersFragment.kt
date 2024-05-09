@@ -1,20 +1,17 @@
 package com.averylg.villagerng
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.averylg.villagerng.databinding.FragmentFirstBinding
 import com.averylg.villagerng.websockets.VillageRNGWebSocketClient
 import okhttp3.Call
 import okhttp3.Callback
-import okhttp3.FormBody
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -27,7 +24,7 @@ import java.net.URI
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment() {
+class NameVillagersFragment : Fragment() {
 
     private val client = OkHttpClient()
 
@@ -37,8 +34,8 @@ class FirstFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val serverURI = URI("ws://10.0.2.2:8081")
-    private val webSocketClient = VillageRNGWebSocketClient(serverURI)
+//    private val serverURI = URI("ws://10.0.2.2:8081")
+//    private val webSocketClient = VillageRNGWebSocketClient(serverURI)
 
     private lateinit var villagerAInput: EditText
     private lateinit var villagerBInput: EditText
@@ -48,24 +45,29 @@ class FirstFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+//        activity?.title = "Name Your Villagers"
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
         return binding.root
 
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity?)?.supportActionBar?.title = "Name Your Villagers"
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        webSocketClient.connect()
+//        webSocketClient.connect()
 
         villagerAInput = view.findViewById(R.id.villager_A_Text_input)
         villagerBInput = view.findViewById(R.id.villager_B_Text_input)
 
         binding.buttonAction.setOnClickListener {
-            Log.d("VillageRNG", "FIRST BUTTON PRESSED MFS!")
 
-            webSocketClient.send("AYO WE CHILLIN!")
+//            webSocketClient.send("AYO WE CHILLIN!")
 
             var vTextA = villagerAInput.text.toString()
             var vTextB = villagerBInput.text.toString()
@@ -80,11 +82,6 @@ class FirstFragment : Fragment() {
 
     private fun performHttpPostRequest(villagerA: String, villagerB: String) {
         val url = "http://10.0.2.2:8084/minecraft"
-
-//        val requestBody = FormBody.Builder()
-//            .add("teamA", villagerA)
-//            .add("teamB", villagerB)
-//            .build()
 
         val mediaType = "application/json; charset=utf-8".toMediaType()
 
@@ -123,7 +120,7 @@ class FirstFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        webSocketClient.close()
+//        webSocketClient.close()
         _binding = null
     }
 }
