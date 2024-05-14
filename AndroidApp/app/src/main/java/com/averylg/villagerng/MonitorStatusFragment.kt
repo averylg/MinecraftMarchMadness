@@ -113,7 +113,11 @@ class MonitorStatusFragment : Fragment() {
 
                     }
 
-                    Log.d("TEST", "halp")
+                    val result = jsonObject.getString("winner")
+
+                    if (result.contains("wins") || result.contains("draw")) {
+                        findNavController().navigate(R.id.action_SecondFragment_to_matchResultsFragment)
+                    }
 
                 } catch (e: Exception) {
                     e.printStackTrace()

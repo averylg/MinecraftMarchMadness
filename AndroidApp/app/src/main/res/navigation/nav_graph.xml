@@ -24,5 +24,19 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_matchResultsFragment"
+            app:destination="@id/matchResultsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/matchResultsFragment"
+        android:name="com.averylg.villagerng.MatchResultsFragment"
+        android:label="MatchResultsFragment" >
+        <action
+            android:id="@+id/action_matchResultsFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_matchResultsFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
     </fragment>
 </navigation>
